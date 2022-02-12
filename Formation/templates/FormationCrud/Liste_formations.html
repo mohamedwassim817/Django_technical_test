@@ -1,0 +1,48 @@
+{% extends 'template.html' %}
+
+
+{% block title %}
+     Liste des formations
+{% endblock %}
+{% block content %}
+<br/>
+<h1 style=" margin-left:50px;">Liste des formations</h1>
+
+<br/>
+
+<div style=" margin-left:50px; display: flex; flex-direction: row; flex-wrap: wrap">
+{% block includes %}
+    <div class="col-md-12" style=" text-align: center;display: flex;"><h1>{{ mytext }}</h1></div>
+
+{% endblock includes %}
+             {% for formation in  formations %}
+
+
+
+  <div class="card" style="width: 18rem; margin: 10px">
+    <img class="card-img-top" style="width: 17em; height: 17em;" src="{{ formation.logo.url }}" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">{{ formation.titre }}</h5>
+      <p class="card-text">{{ formation.type }}</p>
+         <a href="http://127.0.0.1:8000/Formation/{{ formation.id }}/" class="btn btn-primary">Plus de détails</a>
+    </div>
+    <div class="card-footer">
+        {% if formation.etat == "active" %}
+      <small class="text" style="color:green;"><b>{{ formation.etat }}</b></small>
+        {% else %}
+         <small class="text" style="color:red;"><b>{{ formation.etat }}</b></small>
+        {% endif %}
+    </div>
+  </div>
+
+
+
+
+
+    
+    {% endfor %}
+
+</div>
+    <br/><br/>
+{% endblock %}
+
